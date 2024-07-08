@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block titulo %}Usuarios | Detalles{% endblock %}
+
+
+
+{% block enlacessecundariosCSS %}
+        
+{% endblock %}
+
+
+{% block menu_superior %}
+
+        <!--Aqui se incluye el menu superior-->
+        {% include "menusuperior.html" %}
+        
+{% endblock%}
+
+{% block menu_lateral %}
+
+        <!--Aqui se incluye el menu superior-->
+        {% include "menulateral.html" with person=user.username %}
+            
+{% endblock%}
+
+{% block cuerpo %}
+
+<main class="app-content">
+    <div class="card" style="width: 18rem;">
+        <img src="{% static 'plantilla_base/img/user.png' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{object.nombres |title}} {{object.apellidos|title}} </h5>
+         </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Correo: {{object.correo_electronico |lower }} </li>
+          <li class="list-group-item">Rol: {{object.rol |title}}</li>
+          <li class="list-group-item">Estado: 
+            {% if object.activo %}
+                Activo
+            {% else %}
+                Inactivo
+            {% endif %}
+            </li>
+        </ul>
+      </div>
+  </main>
+            
+            {% endblock%}
+
+
+
+
+
+
+            {% block enlacessecundariosJS %}
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+                <script src="{% static 'assets/demo/chart-area-demo.js' %}"></script>
+                <script src="{% static 'assets/demo/chart-bar-demo.js' %}"></script>
+                <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+                <script src="{% static 'js/datatables-simple-demo.js' %}"></script>
+            {% endblock %}

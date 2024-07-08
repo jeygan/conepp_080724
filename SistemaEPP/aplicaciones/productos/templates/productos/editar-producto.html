@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block titulo %}Producto | Editar{% endblock %}
+
+
+
+{% block enlacessecundariosCSS %}
+        
+{% endblock %}
+
+
+{% block menu_superior %}
+
+        <!--Aqui se incluye el menu superior-->
+        {% include "menusuperior.html" %}
+        
+{% endblock%}
+
+{% block menu_lateral %}
+
+        <!--Aqui se incluye el menu superior-->
+        {% include "menulateral.html" with person=user.username %}
+            
+{% endblock%}
+
+{% block cuerpo %}
+
+<main class="app-content">
+    <div class="card" style="width: 18rem;">
+        <img src="{% static 'plantilla_base/img/user.png' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <form action="{% url 'profesores:profesoresEditar' usuarioId %}" method="POST" >
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="control-label">{{form.correo_electronico.label}}</label>
+                    {{form.correo_electronico}}
+                </div>
+                <div class="form-group">
+                    <label class="control-label">{{form.nombres.label}}</label>
+                    {{form.nombres}}
+                </div>
+                <div class="form-group">
+                    <label class="control-label">{{form.apellidos.label}}</label>
+                    {{form.apellidos}}
+                </div>
+                
+                <div class="form-group">
+                <label class="control-label">{{form.password.label}}</label>
+                {{form.password}}
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelect1">{{form.rol.label}}</label>
+                    {{form.rol}}
+                    
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelect1">{{form.estado.label}}</label>
+                    {{form.activo}}Activo
+                    
+                </div>
+                <div class="tile-footer">
+                    <button id="btnActionForm" class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i><span id="btnText">Guardar</span></button>&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</button>
+                </div>
+            </form>
+      </div>
+  </main>
+            
+{% endblock%}
+
+
+
+
+
+
+            {% block enlacessecundariosJS %}
+                
+                <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+                <script src="{% static 'js/datatables-simple-demo.js' %}"></script>
+            {% endblock %}
